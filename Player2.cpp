@@ -26,9 +26,9 @@ void Player2::draw() {
 
 void Player2::moveInput() {
   if (IsKeyDown(KEY_A)) {
-    direction = direction + 0.15;
-  } else if (IsKeyDown(KEY_D)) {
     direction = direction - 0.15;
+  } else if (IsKeyDown(KEY_D)) {
+    direction = direction + 0.15;
   }
 
   if (IsKeyDown(KEY_W)) {

@@ -52,7 +52,7 @@ void Player1::moveInput() {
 }
 
 void Player1::fire() { // spwan a projectile
-  if (IsKeyPressed(KEY_KP_1)) {
+  if (IsKeyPressed(KEY_ENTER)) {
     projectiles.push_back(Projectile(xPos, yPos, 3, direction));
   }
 }

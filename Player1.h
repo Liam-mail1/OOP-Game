@@ -24,6 +24,18 @@ public:
   void moveInput(); // check for input, and then update its position
   void fire();      // spwan a projectile, stored in vector "projectiles"
   void draw();      // draw the tank at corrspounding location
+
+  // Getter methods to access private members
+  float getFrameWidth() const { return static_cast<float>(frameWidth); }
+  float getFrameHeight() const { return static_cast<float>(frameHeight); }
+  float getX() const { return static_cast<float>(xPos); } 
+  float getY() const { return static_cast<float>(yPos); }
+
+  Rectangle getCollisionRectangle() const {
+    return { static_cast<float>(xPos), static_cast<float>(yPos),
+             static_cast<float>(frameWidth), static_cast<float>(frameHeight) };
+  }
+
 };
 
 #endif

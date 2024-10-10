@@ -15,6 +15,7 @@ Player1::Player1() : Tank() {
   // health
   health = 2;
 
+
   // create a rectangle, used to resize and rotate the texture in game
   sourceRec = {0, 0, (float)frameWidth, (float)frameHeight};
   origin = {(float)frameWidth - 565, (float)frameHeight - 375};
@@ -24,8 +25,8 @@ Player1::Player1() : Tank() {
 
 void Player1::draw() { // draw the tank with its texture inside of that
                        // rectangle
-  DrawTexturePro(image, sourceRec, destRec, origin, (float)direction * 180 / PI,
-                 WHITE);
+  DrawTexturePro(image, sourceRec, destRec, origin, (float)direction * 180 / PI, WHITE);
+
 };
 
 void Player1::moveInput() {
@@ -51,7 +52,7 @@ void Player1::moveInput() {
              frameWidth * 0.1f};
 }
 
-void Player1::fire() { // spwan a projectile
+void Player1::fire() { // spawn a projectile
   if (IsKeyPressed(KEY_ENTER)) {
     projectiles.push_back(Projectile(xPos, yPos, 3, direction));
   }

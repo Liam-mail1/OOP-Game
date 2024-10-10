@@ -26,6 +26,10 @@ public:
     bool isDestroyed() const { return destroyed; } // Getter for destroyed
     Rectangle getRectangle() const;
 
+    // Declare trigger as a virtual function
+    virtual void trigger() = 0;  // Pure virtual function
+    virtual void update(float deltaTime) = 0;
+
 
     // Define a structure for the Barrel
     struct Barrel {

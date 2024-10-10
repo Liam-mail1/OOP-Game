@@ -8,6 +8,7 @@
 #include <ctime>   // For time()
 #include "TrapBase.h"
 #include "TrapVariant.h"
+#include "Trapdoor.h" 
 using namespace std;
 #include <iostream>
 
@@ -26,6 +27,8 @@ int main() {
     Texture2D sandTile = LoadTexture("sand.png");
     Texture2D barrelTexture = LoadTexture("barrel.png"); // Add barrel texture
     Texture2D explosionTexture = LoadTexture("explosion.png"); // Add explosion texture
+    Texture2D trapdoorTexture = LoadTexture("trapdoor.png"); // Load the trapdoor texture
+
 
     // Calculate rows and columns based on window size
     const int cols = (windowWidth + TILE_SIZE - 1) / TILE_SIZE; // Ensures rounding up
@@ -40,10 +43,19 @@ int main() {
         }
     }
     // Define barrel position and dimensions
-    Rectangle barrelRect = {800, 600, 64, 64}; // Adjust the dimensions as needed
-    bool isExploded = false; // To check if the barrel has exploded
-    float explosionTimer = 0.0f; // Timer for explosion visibility
-    bool isBarrelVisible = true; // To check if the barrel is still visible
+    Rectangle barrel1Rect = {800, 600, 64, 64}; // Adjust the dimensions as needed
+    Rectangle barrel2Rect = {1000, 200, 64, 64}; // Second barrel (different position)
+    bool isBarrel1Exploded = false;
+    bool isBarrel2Exploded = false;
+
+    float explosion1Timer = 0.0f;
+    float explosion2Timer = 0.0f;
+
+    bool isBarrel1Visible = true;
+    bool isBarrel2Visible = true;
+
+    // Create a trapdoor instance
+    Trapdoor trapdoor(400, 400, trapdoorTexture); // Set trapdoor position and texture
 
     SetTargetFPS(60); // Set target FPS
 
@@ -77,44 +89,84 @@ int main() {
         Projectile.update();
         Projectile.draw();
         }
-        // Draw the barrel
-        if (isBarrelVisible) {
-        if (!isExploded) { // Draw the barrel only if it hasn't exploded
-            DrawTexture(barrelTexture, barrelRect.x, barrelRect.y, WHITE);
-        } else { // If exploded, draw the explosion
-            DrawTexture(explosionTexture, barrelRect.x, barrelRect.y, WHITE);
-            explosionTimer += GetFrameTime(); // Update the timer
-            if (explosionTimer >= 1.0f) { // Hide the explosion after 1 second
-                isBarrelVisible = false; // Set barrel visibility to false
-                explosionTimer = 0.0f; // Reset the explosion timer
+        // Draw first barrel
+        if (isBarrel1Visible) {
+            if (!isBarrel1Exploded) {
+                DrawTexture(barrelTexture, barrel1Rect.x, barrel1Rect.y, WHITE);
+            } else {
+                DrawTexture(explosionTexture, barrel1Rect.x, barrel1Rect.y, WHITE);
+                explosion1Timer += GetFrameTime();
+                if (explosion1Timer >= 1.0f) {
+                    isBarrel1Visible = false;
+                    explosion1Timer = 0.0f;
+                }
             }
         }
-      }
+
+         // Draw second barrel
+        if (isBarrel2Visible) {
+            if (!isBarrel2Exploded) {
+                DrawTexture(barrelTexture, barrel2Rect.x, barrel2Rect.y, WHITE);
+            } else {
+                DrawTexture(explosionTexture, barrel2Rect.x, barrel2Rect.y, WHITE);
+                explosion2Timer += GetFrameTime();
+                if (explosion2Timer >= 1.0f) {
+                    isBarrel2Visible = false;
+                    explosion2Timer = 0.0f;
+                }
+            }
+        }
 
       // Check for collision between player 1 and barrel
         Rectangle player1Rect = {
             player1.getX(),
             player1.getY(),
-            player1.getFrameWidth(),  // Use the getter to get width
-            player1.getFrameHeight()   // Use the getter to get height
+            player1.getFrameWidth() * 0.1f,  // Use the getter to get width
+            player1.getFrameHeight() * 0.1f   // Use the getter to get height
         };
 
-        if (!isExploded && CheckCollisionRecs(player1Rect, barrelRect)) {
-            isExploded = true; // Trigger explosion
-            explosionTimer = 0.0f; // Reset the explosion timer
+        if (CheckCollisionRecs(player1Rect, {trapdoor.position.x, trapdoor.position.y, 64, 64}) && trapdoor.isActive) {
+        trapdoor.hit(); // Call hit function when player 1 hits the trapdoor
+        }
+        
+
+        if (!isBarrel1Exploded && CheckCollisionRecs(player1Rect, barrel1Rect)) {
+            isBarrel1Exploded = true;
+            explosion1Timer = 0.0f;
+        }
+
+        if (!isBarrel2Exploded && CheckCollisionRecs(player1Rect, barrel2Rect)) {
+            isBarrel2Exploded = true;
+            explosion2Timer = 0.0f;
         }
 
         Rectangle player2Rect = {
             player2.getX(),
             player2.getY(),
-            player2.getFrameWidth(),  // Use the getter to get width
-            player2.getFrameHeight()   // Use the getter to get height
+            player2.getFrameWidth() * 0.1f,  // Use the getter to get width
+            player2.getFrameHeight() * 0.1f   // Use the getter to get height
         };
 
-        if (!isExploded && CheckCollisionRecs(player2Rect, barrelRect)) {
-            isExploded = true; // Trigger explosion
-            explosionTimer = 0.0f; // Reset the explosion timer
+         if (!isBarrel1Exploded && CheckCollisionRecs(player2Rect, barrel1Rect)) {
+            isBarrel1Exploded = true;
+            explosion1Timer = 0.0f;
         }
+
+        if (!isBarrel2Exploded && CheckCollisionRecs(player2Rect, barrel2Rect)) {
+            isBarrel2Exploded = true;
+            explosion2Timer = 0.0f;
+        }
+
+        if (CheckCollisionRecs(player2Rect, {trapdoor.position.x, trapdoor.position.y, 64, 64}) && trapdoor.isActive) {
+        trapdoor.hit(); // Call hit function when player 2 hits the trapdoor
+        }
+
+        // // Draw bounding boxes for debugging
+        // DrawRectangleLines(player1Rect.x, player1Rect.y, player1Rect.width, player1Rect.height, RED); // Player 1
+        // DrawRectangleLines(player2Rect.x, player2Rect.y, player2Rect.width, player2Rect.height, BLUE); // Player 2
+        // DrawRectangleLines(barrel1Rect.x, barrel1Rect.y, barrel1Rect.width, barrel1Rect.height, GREEN); // Barrel 1
+        // DrawRectangleLines(barrel2Rect.x, barrel2Rect.y, barrel2Rect.width, barrel2Rect.height, YELLOW); // Barrel 2
+
 
         // Process input and draw players
         
@@ -122,6 +174,10 @@ int main() {
         player1.draw();
         player2.moveInput();
         player2.draw();
+
+        // Update trapdoor
+        trapdoor.update(GetFrameTime());
+        trapdoor.draw(); // Draw the trapdoor
 
         EndDrawing();
           // check for projectiles fired by player1, if timeout is ture then delete
@@ -150,5 +206,6 @@ int main() {
     UnloadTexture(sandTile);
     UnloadTexture(barrelTexture);
     UnloadTexture(explosionTexture);
+    UnloadTexture(trapdoorTexture); 
     CloseWindow();
 }

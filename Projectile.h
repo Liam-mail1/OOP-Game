@@ -7,6 +7,10 @@ private:
   double direction;
   int counter;
   bool timeout;
+  int radius;
+  float xSpeed;
+  float ySpeed;
+  int framecount;
 
 public:
   Projectile();
@@ -15,4 +19,13 @@ public:
   void update();
   void selfDes();
   bool getTimeOut();
+  int getX();
+  int getY();
+  int getRad();
+  void relfectX();
+  void reflectY();
+  void upFrame();
+  void reFrame();
+  int getFrame();
+  bool calcFrame();
 };

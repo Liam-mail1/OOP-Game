@@ -100,6 +100,26 @@ int main() {
     // same as about but for player 2
     player2.fire();
     for (auto &Projectile : player2.projectiles) {
+      Projectile.upFrame();
+      for (int i = 0; i < WallSet.getWallcount(); i++) {
+        if (CheckCollisionCircleRec(
+                Vector2{(float)Projectile.getX(), (float)Projectile.getY()},
+                Projectile.getRad(),
+                Rectangle{
+                    (float)WallSet.getX(WallSet.getNum(), i),
+                    (float)WallSet.getY(WallSet.getNum(), i),
+                    (float)WallSet.getWidth(WallSet.getNum(), i),
+                    (float)WallSet.getLength(WallSet.getNum(), i),
+                })) {
+          if (WallSet.getWallDIr(WallSet.getNum(), i) == 1 &&
+              Projectile.calcFrame()) {
+            Projectile.reflectY();
+          } else if (Projectile.calcFrame()) {
+            Projectile.relfectX();
+          }
+        }
+      };
+
       Projectile.update();
       Projectile.draw();
     }

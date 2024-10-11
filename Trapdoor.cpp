@@ -3,7 +3,7 @@
 
 // Constructor implementation
 Trapdoor::Trapdoor(int x, int y, Texture2D texture) 
-    : position({static_cast<float>(x), static_cast<float>(y)}), texture(texture), isActive(true) {
+    : position({static_cast<float>(x), static_cast<float>(y)}), isActive(true), texture(texture) {
     // Ensure other initialization as needed
 }
 // Update method implementation

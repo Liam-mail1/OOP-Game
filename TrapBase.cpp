@@ -1,6 +1,8 @@
 #include "TrapBase.h"
 #include <iostream>
 
+TrapBase::TrapBase() {}
+
 TrapBase::TrapBase(int health, int damage) 
     : trapHealth(health), trapDamage(damage), isActive(false) {}
 

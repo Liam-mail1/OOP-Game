@@ -1,6 +1,8 @@
 // TrapVariant.cpp
 #include "TrapVariant.h"
 
+TrapVariant::TrapVariant() {}
+
 TrapVariant::TrapVariant(float x, float y) : TrapBase(x, y), destroyed(false), explosionTime(1.0f), explosionTimer(0.0f) {
     barrelTexture = LoadTexture("barrel.png");
     explosionTexture = LoadTexture("explosion.png");

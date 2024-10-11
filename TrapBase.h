@@ -7,6 +7,7 @@ protected:
     bool isActive;
 
 public:
+    TrapBase();
     TrapBase(int health, int damage); // Constructor declaration
     virtual ~TrapBase(); // Virtual destructor
 

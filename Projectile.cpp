@@ -1,18 +1,13 @@
 #include "Projectile.h"
 #include <cmath>
 
-Projectile::Projectile() : Entity(){};
+Projectile::Projectile() : Entity(), direction(0), counter(0), timeout(false), radius(7), xSpeed(0), ySpeed(0), framecount(0), xPos(0), yPos(0), speed(0), active(true) {}
 
-Projectile::Projectile(int X, int Y, int Speed, double dire) {
-  direction = dire;
-  xPos = X;
-  yPos = Y;
-  speed = Speed;
-  counter = 0;
-  timeout = false;
-  radius = 7;
-  xSpeed = speed * cos(direction);
-  ySpeed = speed * sin(direction);
+
+Projectile::Projectile(int X, int Y, int Speed, double dire)
+    : Entity(), direction(dire), counter(0), timeout(false), radius(7), xPos(X), yPos(Y), speed(Speed), active(true) {
+    xSpeed = speed * cos(direction); // Ensure direction is in radians
+    ySpeed = speed * sin(direction);
 }
 
 void Projectile::draw() { DrawCircle(xPos, yPos, radius, BLACK); };
@@ -23,6 +18,9 @@ void Projectile::update() {
     timeout = true;
   }
   counter++;
+  DrawCircle(xPos, yPos, radius, BLACK); // Ensure this matches the position
+  Rectangle collisionBox = getCollisionRectangle();
+  DrawRectangleLines(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height, RED); // Draw collision box
 };
 
 bool Projectile::getTimeOut() { return timeout; }
@@ -31,7 +29,7 @@ int Projectile::getX() { return xPos; }
 int Projectile::getY() { return yPos; }
 int Projectile::getRad() { return radius; }
 
-void Projectile::relfectX() { xSpeed = xSpeed * -1; };
+void Projectile::reflectX() { xSpeed = xSpeed * -1; };
 void Projectile::reflectY() { ySpeed = ySpeed * -1; };
 
 void Projectile::upFrame() { framecount++; }
@@ -43,4 +41,12 @@ bool Projectile::calcFrame() {
   } else {
     return false;
   };
+}
+Rectangle Projectile::getCollisionRectangle() const {
+    return Rectangle{
+        xPos - radius, // Adjust for the radius
+        yPos - radius,
+        radius * 2,    // Width is double the radius
+        radius * 2     // Height is double the radius
+    };
 }

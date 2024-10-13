@@ -9,6 +9,7 @@
 class Tank : public Entity {
 
 public:
+  Tank(int xPosition, int yPosition, int speedValue);
   Tank(); // defalut constructor.
 
   // three pure virtual method used for overriden

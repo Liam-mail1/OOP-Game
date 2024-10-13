@@ -9,7 +9,7 @@ protected:
   int speed;
 
 public:
-  Entity(int xPosition, int yPosition, int speed);
+  Entity(int xPosition, int yPosition, int speedValue); 
   Entity();
 };
 #endif

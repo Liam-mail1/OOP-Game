@@ -6,8 +6,8 @@
 class WallSet {
 
 private:
-  int Wallset1[4][3] = {
-      {1000, 800, 1200}, {600, 400, 500}, {200, 10, 300}, {10, 300, 10}};
+  int Wallset1[4][4] = {
+      {638, 510, 638, 638}, {890, 640, 640, 1000}, {256, 10, 256, 256}, {10, 256, 10, 10}};// 128      1 horizontal 2 vertical 3 horizontal
 
   /*
   the matrix wallset is a predetermined matrix that contains arguments used
@@ -25,11 +25,11 @@ private:
   mannuly fill in the coordinates that you desire
   */
 
-  int Wallset1Dir[3] = {1, 2, 2};
+  int Wallset1Dir[3] = {1, 2, 3};
   // this line tells the orientation of the wall, 1
   // for vertical and 2 for horizontal, this is
   // particular improtant for calculating the reflection of projectile when
-  // hitting the wal
+  // hitting the wall
 
   int wallcount;
   int Wallnum;

@@ -27,21 +27,25 @@ int WallSet::getX(int wallset, int num) {
   if (wallset == 1) {
     return Wallset1[0][num];
   }
+  return -1;
 };
 int WallSet::getY(int wallset, int num) {
   if (wallset == 1) {
     return Wallset1[1][num];
   }
+  return -1;
 };
 int WallSet::getWidth(int wallset, int num) {
   if (wallset == 1) {
     return Wallset1[2][num];
   }
+  return -1;
 };
 int WallSet::getLength(int wallset, int num) {
   if (wallset == 1) {
     return Wallset1[3][num];
   }
+  return -1;
 };
 
 int WallSet::getWallcount() { return wallcount; };
@@ -51,4 +55,8 @@ int WallSet::getWallDIr(int type, int num) {
   if (type == 1) {
     return Wallset1Dir[num];
   }
+  return -1;
 };
+
+
+

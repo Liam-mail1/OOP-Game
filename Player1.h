@@ -10,9 +10,15 @@ private:
   int frameWidth;
   int frameHeight;
   Texture2D image;
-  Vector2 origin;
+
+  int health;
+  float direction;
+  float speed;
+
+  // Rectangle and origin for drawing and rotation
   Rectangle sourceRec;
   Rectangle destRec;
+  Vector2 origin;
 
 public:
   std::vector<Projectile>
@@ -35,6 +41,29 @@ public:
     return { static_cast<float>(xPos), static_cast<float>(yPos),
              static_cast<float>(frameWidth), static_cast<float>(frameHeight) };
   }
+
+  // Getter for health
+  int getHealth() const {
+      return health;
+  }
+
+  // Function to reduce health when hit
+  void takeDamage(int damage) {
+    health -= damage;
+    if (health <= 0) {
+      // Handle player death
+      health = 0;
+      // Add logic for player death, respawn, etc.
+    }
+  }
+
+  int score = 0;
+  void updateScore() { score++; }
+  void reset();
+  const int initialHealth = 100;
+  float startingX = 1000.0f;
+  float startingY = 1000.0f;
+  
 
 };
 

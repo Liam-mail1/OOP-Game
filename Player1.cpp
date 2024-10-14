@@ -2,12 +2,27 @@
 #include "Tank.h"
 #include "raylib.h"
 #include <cmath>
+#include <iostream>
 
 Player1::Player1() : Tank(), health(100), direction(0.0f), speed(5.0f) {
   // load texture, and read its dimensions
   image = LoadTexture("tankTexture.png");
   frameWidth = image.width;
   frameHeight = image.height;
+  // Check if the texture was loaded correctly
+    if (image.width <= 0 || image.height <= 0) {
+        std::cerr << "Error loading texture! Check the file path." << std::endl;
+        // You might want to set default values here
+    } else {
+        frameWidth = image.width;
+        frameHeight = image.height;
+
+        // Log initialized values
+        std::cout << "Initialized Player1 with health: " << health
+                  << ", direction: " << direction << ", speed: " << speed
+                  << ", texture width: " << frameWidth
+                  << ", texture height: " << frameHeight << std::endl;
+    }
 
   // spwan location, where the tank first appera
   xPos = startingX;
@@ -68,4 +83,9 @@ void Player1::reset() {
   yPos = startingY;
 }
 
-Player1::~Player1() { UnloadTexture(image); };
+Player1::~Player1() {
+    if (image.id > 0) {
+        UnloadTexture(image);
+    }
+}
+

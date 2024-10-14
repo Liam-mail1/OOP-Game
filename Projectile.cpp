@@ -25,8 +25,6 @@ void Projectile::update() {
 
 bool Projectile::getTimeOut() { return timeout; }
 
-int Projectile::getX() { return xPos; }
-int Projectile::getY() { return yPos; }
 int Projectile::getRad() { return radius; }
 
 void Projectile::reflectX() { xSpeed = xSpeed * -1; };
@@ -50,3 +48,4 @@ Rectangle Projectile::getCollisionRectangle() const {
         radius * 2     // Height is double the radius
     };
 }
+

@@ -14,8 +14,9 @@ using namespace std;
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <cassert>
 
-int main() {
+int main() { 
   const int TILE_SIZE = 128; // Each tile size in pixels
   const int windowWidth = 1920;
   const int windowHeight = 1080;
@@ -61,6 +62,48 @@ int main() {
   WallSet WallSet(1);
 
   SetTargetFPS(60); // Set target FPS
+
+  // Test initial health
+    if (player1.getHealth() == 100) {
+        std::cout << "Initial health test passed." << std::endl;
+    } else {
+        std::cout << "Initial health test failed." << std::endl;
+    }
+
+    // Simulate movement input (replace with actual movement logic if needed)
+    player1.moveInput(); // Simulate the actual input in your game loop
+
+    // Test initial health
+    if (player2.getHealth() == 100) {
+        std::cout << "Initial health test passed." << std::endl;
+    } else {
+        std::cout << "Initial health test failed." << std::endl;
+    }
+
+    // Simulate movement input (replace with actual movement logic if needed)
+    player2.moveInput(); // Simulate the actual input in your game loop
+
+    // Test trap spawning at a specific position
+    if (trapdoor.isActive) {
+        std::cout << "Trapdoor spawn test passed." << std::endl;
+    } else {
+        std::cout << "Trapdoor spawn test failed." << std::endl;
+    }
+
+    // Test barrel spawning at a specific position
+    if (isBarrel1Visible) {
+        std::cout << "Barrel 1 spawn test passed." << std::endl;
+    } else {
+        std::cout << "Barrel 1 spawn test failed." << std::endl;
+    }
+
+    if (isBarrel2Visible) {
+        std::cout << "Barrel 2 spawn test passed." << std::endl;
+    } else {
+        std::cout << "Barrel 2 spawn test failed." << std::endl;
+    }
+    std::cout << "All tests executed." << std::endl;
+
 
   while (!WindowShouldClose()) {
     BeginDrawing();

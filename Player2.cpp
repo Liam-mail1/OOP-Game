@@ -66,4 +66,3 @@ void Player2::reset() {
 
 
 Player2::~Player2() { UnloadTexture(image); };
-

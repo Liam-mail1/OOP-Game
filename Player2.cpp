@@ -17,7 +17,7 @@ Player2::Player2() : Tank(), health(100), direction(0.0f), speed(5.0f) {
 }
 
 void Player2::draw() {
-  float scaleFactor = 0.15f;
+  float scaleFactor = 0.2f;
   // Calculate the scaled size
   float scaledWidth = frameWidth * scaleFactor;
   float scaledHeight = frameHeight * scaleFactor;
@@ -64,4 +64,6 @@ void Player2::reset() {
 }
 
 
+
 Player2::~Player2() { UnloadTexture(image); };
+

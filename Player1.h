@@ -18,7 +18,7 @@ private:
   // Rectangle and origin for drawing and rotation
   Rectangle sourceRec;
   Rectangle destRec;
-  Vector2 origin;
+  Vector2 origin; 
 
 public:
   std::vector<Projectile>
@@ -38,8 +38,10 @@ public:
   float getY() const { return static_cast<float>(yPos); }
 
   Rectangle getCollisionRectangle() const {
+    float scaledWidth = frameWidth * 0.05f; 
+    float scaledHeight = frameHeight * 0.05f;
     return { static_cast<float>(xPos), static_cast<float>(yPos),
-             static_cast<float>(frameWidth), static_cast<float>(frameHeight) };
+             scaledWidth, scaledHeight };
   }
 
   // Getter for health
@@ -63,7 +65,7 @@ public:
   const int initialHealth = 100;
   float startingX = 1000.0f;
   float startingY = 1000.0f;
-  
+
 
 };
 

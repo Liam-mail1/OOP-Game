@@ -12,16 +12,12 @@ Player1::Player1() : Tank(), health(100), direction(0.0f), speed(5.0f) {
   // spwan location, where the tank first appera
   xPos = startingX;
   yPos = startingY;
-
-  // create a rectangle, used to resize and rotate the texture in game
   sourceRec = {0, 0, (float)frameWidth, (float)frameHeight};
   origin = {(float)frameWidth / 2, (float)frameHeight / 2};
   destRec = {(float)this->xPos, (float)this->yPos, (float)frameWidth, (float)frameHeight};
-
 }
 
 void Player1::draw() { // draw the tank with its texture inside of that
-                       // rectangle
   float scaleFactor = 0.15f;
   // Calculate the scaled size
   float scaledWidth = frameWidth * scaleFactor;
@@ -38,21 +34,19 @@ void Player1::moveInput() {
   // check for movement input
   // the direction is a float, treated as the radiant of player's face direction
   if (IsKeyDown(KEY_RIGHT)) {
-    direction = direction + 0.1;
-  } else if (IsKeyDown(KEY_LEFT)) {
-    direction = direction - 0.1;
-  }
+        direction += 0.1;
+    } else if (IsKeyDown(KEY_LEFT)) {
+        direction -= 0.1;
+    }
 
   // update the player's location according to the previous movement input
   if (IsKeyDown(KEY_UP)) {
-    xPos += speed * cos(direction);
-    yPos += speed * sin(direction);
-  } else if (IsKeyDown(KEY_DOWN)) {
-    xPos -= speed * cos(direction);
-    yPos -= speed * sin(direction);
-  }
-  // move the rectangle to the new locatiopn
-  destRec = {(float)this->xPos, (float)this->yPos, (float)frameWidth, (float)frameHeight}; 
+        xPos += speed * cos(direction);
+        yPos += speed * sin(direction);
+    } else if (IsKeyDown(KEY_DOWN)) {
+        xPos -= speed * cos(direction);
+        yPos -= speed * sin(direction);
+    }
 }
 
 void Player1::fire() { // spwan a projectile

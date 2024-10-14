@@ -18,6 +18,7 @@ private:
   float direction;
   float speed;
 
+
 public:
   std::vector<Projectile> projectiles;
   Player2();
@@ -39,8 +40,10 @@ public:
   float getY() const { return static_cast<float>(yPos); }
 
   Rectangle getCollisionRectangle() const {
+    float scaledWidth = frameWidth * 0.05f;
+    float scaledHeight = frameHeight * 0.05f;
     return { static_cast<float>(xPos), static_cast<float>(yPos),
-             static_cast<float>(frameWidth), static_cast<float>(frameHeight) };
+             scaledWidth, scaledHeight };
   }
 
   // Getter for health

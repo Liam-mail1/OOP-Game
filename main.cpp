@@ -160,7 +160,9 @@ int main() {
 
     // Draw the collision rectangle for debugging purposes (optional)
     Rectangle collisionBox = Projectile.getCollisionRectangle(); 
+    Rectangle playerBox = player1.getCollisionRectangle(); 
     DrawRectangleLines(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height, RED); // Draw the collision box in red
+    DrawRectangleLines(playerBox.x, playerBox.y, playerBox.width, playerBox.height, PURPLE); // Draw the collision box in red
 }
 
   // Remove expired projectiles
@@ -192,7 +194,6 @@ int main() {
               }
             }
         }
-
     // Check for collision between player 1 and barrel
     Rectangle player1Rect = {
         player1.getX(), player1.getY(),
@@ -215,7 +216,6 @@ int main() {
             isBarrel2Exploded = true;
             explosion2Timer = 0.0f;
         }
-
     Rectangle player2Rect = {
         player2.getX(), player2.getY(),
         player2.getFrameWidth() * 0.05f, // Use the getter to get width
@@ -340,7 +340,6 @@ int main() {
 
     DrawText(TextFormat("Player 1 Score: %d", player1.score), 860, 10, 20, BLACK);
     DrawText(TextFormat("Player 2 Score: %d", player2.score), 860, 40, 20, BLACK);
-
     EndDrawing();
   }
 

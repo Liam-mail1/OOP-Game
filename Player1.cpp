@@ -62,6 +62,12 @@ void Player1::moveInput() {
         xPos -= speed * cos(direction);
         yPos -= speed * sin(direction);
     }
+
+  // Set the border
+  if (xPos < 0) xPos = 0;
+  if (xPos > 1920) xPos = 1920;
+  if (yPos < 0) yPos = 0;
+  if (yPos > 1080) yPos = 1080;
 }
 
 void Player1::fire() { // spwan a projectile

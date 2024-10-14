@@ -8,6 +8,7 @@
 #include "WallSet.h"
 #include "raylib.h"
 #include "Trapdoor.h" 
+#include "MainMenu.h"
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
 using namespace std;
@@ -24,7 +25,11 @@ int main() {
   Player1 player1;
   Player2 player2;
 
+  InitMainMenu();
+  GameState currentState = MENU;
+
   // Load textures for the tiles and the barrel
+  Texture2D background = LoadTexture("background.png");
   Texture2D grassTile = LoadTexture("ground.png");
   Texture2D sandTile = LoadTexture("sand.png");
   Texture2D barrelTexture = LoadTexture("barrel.png"); // Add barrel texture
@@ -109,6 +114,9 @@ int main() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
+    if (currentState == MENU) {
+      mainMenu(currentState);
+      } else if (currentState == PLAYING) {
     // Draw tiles based on the predefined map
     for (int y = 0; y < rows; ++y) {
       for (int x = 0; x < cols; ++x) {
@@ -383,6 +391,10 @@ int main() {
 
     DrawText(TextFormat("Player 1 Score: %d", player1.score), 860, 10, 20, BLACK);
     DrawText(TextFormat("Player 2 Score: %d", player2.score), 860, 40, 20, BLACK);
+
+    } else if (currentState == EXIT) {
+      break;
+      }
     EndDrawing();
   }
 

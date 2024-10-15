@@ -1,0 +1,11 @@
+Changes in project plan
+
+The project has slightly changed since its initial plan. 
+Key enhancements include the introduction of a scoring system 
+with a winning condition of 10 points that rewards players for eliminating opponents. 
+Players cannot pick up powerups or items, as these were optional tasks that could have been implemented. 
+The class design has also become more detailed, with specific methods and interactions outlined for traps and projectiles. 
+The tile map is now random such that we found it easier to code and would appear more creative to players 
+such that every map looks different but with familiar mechanics. 
+The use of nodes was not used in the project such that we felt this feature was not as important to be spending our time with 
+rather than more important features such as the implementation of polymorphism.  

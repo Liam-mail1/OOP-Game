@@ -2,7 +2,7 @@
 #define AUTOSAVE_H
 
 void SaveScores(int player1Score, int player2core);
-void SaveScores(int player1Score, int player2Score);
+void LoadScores(int &player1Score, int &player2Score);
 
 
 #endif

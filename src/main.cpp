@@ -740,6 +740,7 @@ int main()
 
       DrawText(TextFormat("Player 1 Score: %d", player1.score), 860, 10, 20, BLACK);
       DrawText(TextFormat("Player 2 Score: %d", player2.score), 860, 40, 20, BLACK);
+      SaveScores(player1.score, player2.score);
     }
     else if (currentState == EXIT)
     {

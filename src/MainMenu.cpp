@@ -5,7 +5,6 @@
 #include "Player2.h"
 
 Texture2D backgroundTexture;
-
 bool isNewGame = false;
 
 extern Player1 player1;
@@ -25,7 +24,7 @@ void mainMenu(GameState &currentState) {
 
     DrawTexture(backgroundTexture, 0, 0, WHITE);
 
-    int lastScore1, lastScore2;
+    int lastScore1 = 0, lastScore2 = 0;
     LoadScores(lastScore1, lastScore2); 
     
     DrawText(TextFormat("Player1 last Score: %i", lastScore1), 200, 160, 40, BLACK);
@@ -50,5 +49,4 @@ void mainMenu(GameState &currentState) {
     }
 
     EndDrawing();
-
 }

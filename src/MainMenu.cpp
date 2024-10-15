@@ -4,7 +4,7 @@
 Texture2D backgroundTexture;
 
 void InitMainMenu() {
-    backgroundTexture = LoadTexture("background.png");
+    backgroundTexture = LoadTexture("assets/background.png");
 }
 
 void UnloadMainMenu() {

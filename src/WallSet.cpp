@@ -57,6 +57,3 @@ int WallSet::getWallDIr(int type, int num) {
   }
   return -1;
 };
-
-
-

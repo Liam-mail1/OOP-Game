@@ -1,37 +1,36 @@
-#ifndef PLAYER2_H
-#define PLAYER2_H
+#ifndef PLAYER1_H
+#define PLAYER1_H
 #include "Projectile.h"
 #include "Tank.h"
 #include <vector>
 
-// player 2 is very similar to player 1
-
-class Player2 : public Tank {
+class Player1 : public Tank {
 private:
+  // all of these members are from raylib and are used for loading texture
   int frameWidth;
   int frameHeight;
   Texture2D image;
-  Vector2 origin;
-  Rectangle sourceRec;
-  Rectangle destRec;
+
   int health;
   float direction;
   float speed;
 
+  // Rectangle and origin for drawing and rotation
+  Rectangle sourceRec;
+  Rectangle destRec;
+  Vector2 origin; 
 
 public:
-  std::vector<Projectile> projectiles;
-  Player2();
-  ~Player2();
-  void moveInput();
-  void fire();
-  void draw();
-  int score = 0;
-  void updateScore() { score++; }
-  void reset();
-  const int initialHealth = 100;
-  float startingX = 100.0f;
-  float startingY = 200.0f;
+  std::vector<Projectile>
+      projectiles; // a vector used to store all the projectiles fired
+
+  Player1();
+  ~Player1();
+  
+
+  void moveInput() override; // check for input, and then update its position
+  void fire() override;      // spwan a projectile, stored in vector "projectiles"
+  void draw() override;      // draw the tank at corrspounding location
 
   // Getter methods to access private members
   float getFrameWidth() const { return static_cast<float>(frameWidth); }
@@ -40,7 +39,7 @@ public:
   float getY() const { return static_cast<float>(yPos); }
 
   Rectangle getCollisionRectangle() const {
-    float scaledWidth = frameWidth * 0.05f;
+    float scaledWidth = frameWidth * 0.05f; 
     float scaledHeight = frameHeight * 0.05f;
     return { static_cast<float>(xPos), static_cast<float>(yPos),
              scaledWidth, scaledHeight };
@@ -48,7 +47,7 @@ public:
 
   // Getter for health
   int getHealth() const {
-    return health;
+      return health;
   }
 
   // Function to reduce health when hit
@@ -57,9 +56,17 @@ public:
     if (health <= 0) {
       // Handle player death
       health = 0;
-      // Add logic for player death, respawn, etc.
     }
   }
+
+  int score = 0;
+  void updateScore() { score++; }
+  void reset();
+  const int initialHealth = 100;
+  float startingX = 1000.0f;
+  float startingY = 1000.0f;
+
+
 };
 
 #endif

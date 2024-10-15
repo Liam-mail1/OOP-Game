@@ -6,8 +6,17 @@
 class WallSet {
 
 private:
-  int Wallset1[4][4] = {
-      {638, 510, 638, 638}, {890, 640, 640, 1000}, {256, 10, 256, 256}, {10, 256, 10, 10}};// 128      1 horizontal 2 vertical 3 horizontal
+int Wallset1[4][20] = {
+    // X-coordinates
+    {640, 896, 256, 128, 512, 768, 1152, 1408, 1280, 512, 1024, 1600, 256, 640, 1024, 1280, 512, 768, 384, 1792},
+    // Y-coordinates
+    {512, 640, 128, 256, 200, 512, 384, 640, 128, 256, 640, 128, 768, 640, 512, 896, 300, 200, 400, 700},
+    // Widths (horizontal: 265, vertical: 10)
+    {265, 10, 265, 10, 265, 10, 265, 10, 265, 10, 265, 10, 265, 10, 10, 265, 10, 10, 265, 10},
+    // Lengths (horizontal: 10, vertical: 265)
+    {10, 265, 10, 265, 10, 265, 10, 265, 10, 265, 10, 265, 10, 265, 256, 10, 265, 265, 10, 265}
+};
+// 128      1 horizontal 2 vertical 3 horizontal
 
   /*
   the matrix wallset is a predetermined matrix that contains arguments used

@@ -4,7 +4,7 @@
 #include <cmath>
 
 Player2::Player2() : Tank(), health(100), direction(0.0f), speed(5.0f) {
-  image = LoadTexture("tankRed.png");
+  image = LoadTexture("assets/tankRed.png");
   frameWidth = image.width;
   frameHeight = image.height;
   xPos = startingX; 

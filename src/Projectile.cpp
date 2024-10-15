@@ -19,8 +19,7 @@ void Projectile::update() {
   }
   counter++;
   DrawCircle(xPos, yPos, radius, BLACK); // Ensure this matches the position
-  Rectangle collisionBox = getCollisionRectangle();
-  DrawRectangleLines(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height, RED); // Draw collision box
+  // DrawRectangleLines(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height, RED); // Draw collision box
 };
 
 bool Projectile::getTimeOut() { return timeout; }
@@ -48,4 +47,3 @@ Rectangle Projectile::getCollisionRectangle() const {
         radius * 2     // Height is double the radius
     };
 }
-

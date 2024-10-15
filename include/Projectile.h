@@ -24,8 +24,8 @@ public:
   void update();
   void selfDes();
   bool getTimeOut();
-  int getX() const { return static_cast<int>(xPos); } // Get X position
-  int getY() const { return static_cast<int>(yPos); } // Get Y position
+  int getX() const { return static_cast<int>(xPos); } 
+  int getY() const { return static_cast<int>(yPos); }
   int getRad();
   void reflectX();
   void reflectY();
@@ -41,8 +41,8 @@ public:
   }
 
   void setPosition(float x, float y) {
-        xPos = x; // Update X position
-        yPos = y; // Update Y position
+        xPos = x; 
+        yPos = y; 
   }
   
 };

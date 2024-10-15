@@ -9,8 +9,8 @@ class TrapVariant : public TrapBase {
 private:
     float xPos;
     float yPos;
-    bool isExploded; // Add this member variable
-    bool destroyed; // New variable to track if the barrel is destroyed
+    bool isExploded;
+    bool destroyed;
     float explosionTime; // Duration to display the explosion
     float explosionTimer; // Timer to manage explosion duration
     Texture2D barrelTexture; // Texture for barrel
@@ -37,8 +37,7 @@ public:
         float explosionTimer;  // Timer for explosion visibility
 
         // Constructor
-        Barrel(float x, float y) 
-            : rect{x, y, 64, 64},  // Set size as needed
+        Barrel(float x, float y) : rect{x, y, 64, 64},  
               isVisible(true), 
               isExploded(false), 
               explosionTimer(0.0f) {}

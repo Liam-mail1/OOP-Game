@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -g -O0 -I./include  # Include paths for your headers
 LDFLAGS = -L./lib -lraylib -lm        # Linker flags for libraries
 
 # Source files for the main executable
-SRC_FILES = main.cpp Entity.cpp Tank.cpp Player1.cpp Player2.cpp Projectile.cpp TrapBase.cpp TrapVariant.cpp WallSet.cpp Trapdoor.cpp MainMenu.cpp
+SRC_FILES = src/main.cpp src/Entity.cpp src/Tank.cpp src/Player1.cpp src/Player2.cpp src/Projectile.cpp src/TrapBase.cpp src/TrapVariant.cpp src/WallSet.cpp src/Trapdoor.cpp src/MainMenu.cpp
 
 # Object files for the main executable
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
@@ -15,8 +15,8 @@ tankTrouble: $(OBJ_FILES)
 	./$@  # Run the executable after building
 
 # Target for building the test executable for Player1
-test_player1: test_player1.cpp Player1.cpp Tank.cpp Projectile.cpp Entity.cpp
-	$(CXX) test_player1.cpp Player1.cpp Tank.cpp Projectile.cpp Entity.cpp -o $@ $(CXXFLAGS) $(LDFLAGS)
+test_player1: test/test_player1.cpp src/Player1.cpp src/Tank.cpp src/Projectile.cpp src/Entity.cpp
+	$(CXX) test/test_player1.cpp src/Player1.cpp src/Tank.cpp src/Projectile.cpp src/Entity.cpp -o $@ $(CXXFLAGS) $(LDFLAGS)
 
 
 # Compile all source files to object files

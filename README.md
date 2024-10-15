@@ -75,9 +75,3 @@ This project implements a three-level inheritance hierarchy as follows:
 ## Overall Program Interactivity
 - The game features user-friendly hints and instructions throughout to assist players in navigating the menus and understanding gameplay mechanics.
 - Error handling messages provide clear guidance on actions, allowing players to recover from mistakes easily.
-
-## Contributing
-Contributions are welcome! If you would like to contribute to this project, please fork the repository and submit a pull request with your changes. Ensure to follow the project's coding standards and provide appropriate documentation for any new features.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.

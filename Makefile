@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -g -O0 -I./include  # Include paths for your headers
 LDFLAGS = -L./lib -lraylib -lm        # Linker flags for libraries
 
 # Source files for the main executable
-SRC_FILES = src/main.cpp src/Entity.cpp src/Tank.cpp src/Player1.cpp src/Player2.cpp src/Projectile.cpp src/TrapBase.cpp src/TrapVariant.cpp src/WallSet.cpp src/Trapdoor.cpp src/MainMenu.cpp
+SRC_FILES = src/main.cpp src/Entity.cpp src/Tank.cpp src/Player1.cpp src/Player2.cpp src/Projectile.cpp src/TrapBase.cpp src/TrapVariant.cpp src/WallSet.cpp src/Trapdoor.cpp src/MainMenu.cpp src/AutoSave.cpp
 
 # Object files for the main executable
 OBJ_FILES = $(SRC_FILES:.cpp=.o)

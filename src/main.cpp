@@ -9,6 +9,7 @@
 #include "raylib.h"
 #include "Trapdoor.h"
 #include "MainMenu.h"
+#include "AutoSave.h"
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
 using namespace std;
@@ -16,6 +17,7 @@ using namespace std;
 #include <algorithm>
 #include <cmath>
 #include <cassert>
+
 
 int main()
 {
@@ -184,6 +186,10 @@ int main()
   }
   std::cout << "All tests executed." << std::endl;
 
+
+  extern bool isNewGame;
+  bool gameStarted = false;
+
   while (!WindowShouldClose())
   {
     BeginDrawing();
@@ -193,8 +199,17 @@ int main()
     {
       mainMenu(currentState);
     }
-    else if (currentState == PLAYING)
-    {
+    else if (currentState == PLAYING){
+      if (!gameStarted){ //only reloadgame at start
+        if (isNewGame) {
+          player1.score = 0;
+          player2.score = 0;
+          } else { 
+            LoadScores(player1.score, player2.score);
+            }
+            gameStarted = true;
+      }
+    }
       // Draw tiles based on the predefined map
       for (int y = 0; y < rows; ++y)
       {
@@ -452,7 +467,7 @@ int main()
             explosion7Timer = 0.0f;
           }
         }
-      }
+      
       // Check for collision between player 1 and barrel
       Rectangle player1Rect = {
           player1.getX(), player1.getY(),

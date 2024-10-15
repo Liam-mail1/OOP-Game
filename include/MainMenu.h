@@ -3,6 +3,8 @@
 
 #include "raylib.h"
 
+extern bool isNewGame; 
+ 
 enum GameState {
     MENU,
     PLAYING,

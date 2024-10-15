@@ -12,7 +12,7 @@ extern Player1 player1;
 extern Player2 player2;
 
 void InitMainMenu() {
-    backgroundTexture = LoadTexture("background.png");
+    backgroundTexture = LoadTexture("assets/background.png");
 }
 
 void UnloadMainMenu() {
